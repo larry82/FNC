@@ -1,0 +1,9 @@
+--- !ruby/object:Jumpstart::Configuration
+application_name: F&C 財經網
+business_name: F&C 財經網, LLC
+domain: example.com
+support_email: larry.tu@oakda.io
+default_from_email: Jumpstart <support@example.com>
+business_address: 基隆路二段110號11樓
+background_job_processor: async
+email_provider: ''

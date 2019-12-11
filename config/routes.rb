@@ -1,6 +1,9 @@
  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
+  resources :discussions do 
+    resources :posts
+  end
   # Jumpstart views
   if Rails.env.development? || Rails.env.test?
     mount Jumpstart::Engine, at: '/jumpstart'
@@ -88,9 +91,9 @@ Rails.application.routes.draw do
   match "/500", via: :all, to: "errors#internal_server_error"
 
   authenticated :user do
-    root to: "dashboard#show", as: :user_root
+    root to: "discussions#index", as: :user_root
   end
 
   # Public marketing homepage
-  root to: "static#index"
+  root to: "discussions#index"
 end

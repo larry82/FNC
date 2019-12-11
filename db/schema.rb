@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_224530) do
+ActiveRecord::Schema.define(version: 2019_12_11_161529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 2019_10_25_224530) do
     t.index ["user_id"], name: "index_api_tokens_on_user_id"
   end
 
+  create_table "discussions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
+
   create_table "pay_charges", force: :cascade do |t|
     t.bigint "owner_id"
     t.string "processor", null: false
@@ -105,6 +113,15 @@ ActiveRecord::Schema.define(version: 2019_10_25_224530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "trial_period_days", default: 0
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "discussion_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussion_id"], name: "index_posts_on_discussion_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "team_members", force: :cascade do |t|
@@ -188,6 +205,9 @@ ActiveRecord::Schema.define(version: 2019_10_25_224530) do
   end
 
   add_foreign_key "api_tokens", "users"
+  add_foreign_key "discussions", "users"
+  add_foreign_key "posts", "discussions"
+  add_foreign_key "posts", "users"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "users", column: "owner_id"

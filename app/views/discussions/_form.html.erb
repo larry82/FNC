@@ -1,0 +1,23 @@
+<%= form_with(model: discussion) do |form| %>
+  <%= render "shared/error_messages", resource: form.object %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <%= form.fields_for :posts do |post| %>
+    <div class="form-group">
+      <%= post.label :body %>
+      <%= post.rich_text_area :body, data: { controller: "mentions", target: "mentions.field" } %>
+    </div>
+  <% end %>
+
+  <div class="form-group flex justify-between">
+    <%= form.button class: "btn btn-primary" %>
+
+    <% if form.object.persisted? %>
+      <%= link_to 'Delete', form.object, class: "btn btn-danger outline", method: :delete, data: { remote: true, confirm: "Are you sure?" } %>
+    <% end %>
+  </div>
+<% end %>
