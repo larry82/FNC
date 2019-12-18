@@ -2,22 +2,22 @@
   <%= render "shared/error_messages", resource: form.object %>
 
   <div class="form-group">
-    <%= form.label :title %>
+    <%= form.label :title, "標題" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
   <%= form.fields_for :posts do |post| %>
     <div class="form-group">
-      <%= post.label :body %>
+      <%= post.label :body, "內文" %>
       <%= post.rich_text_area :body, data: { controller: "mentions", target: "mentions.field" } %>
     </div>
   <% end %>
 
   <div class="form-group flex justify-between">
-    <%= form.button class: "btn btn-primary" %>
+    <%= form.button "送出", class: "btn btn-primary" %>
 
     <% if form.object.persisted? %>
-      <%= link_to 'Delete', form.object, class: "btn btn-danger outline", method: :delete, data: { remote: true, confirm: "Are you sure?" } %>
+      <%= link_to '刪除', form.object, class: "btn btn-danger outline", method: :delete, data: { remote: true, confirm: "確定要刪除?" } %>
     <% end %>
   </div>
 <% end %>
