@@ -18,8 +18,10 @@
         <table class="table">
           <thead>
             <tr>
+              <th class="p-3 uppercase text-left text-xs text-gray-700">編號</th>
               <th class="p-3 uppercase text-left text-xs text-gray-700">用戶</th>
               <th class="p-3 uppercase text-left text-xs text-gray-700">主題</th>
+              <th class="p-3 uppercase text-left text-xs text-gray-700">留言</th>
               <th class="p-3 uppercase text-left text-xs text-gray-700 w-20">操作</th>
             </tr>
           </thead>
@@ -27,9 +29,10 @@
           <tbody>
           <% @discussions.each do |discussion| %>
             <tr class="group border-t border-gray-400 hover:bg-gray-100">
-                        <td class="p-3"><%= discussion.user_id %></td>
-                        <td class="p-3"><%= discussion.title %></td>
-            
+              <td class="p-3"><%= discussion.id %></td>
+                <td class="p-3"><%= discussion.user.name %></td>
+                <td class="p-3"><%= discussion.title %></td>
+                <td class="p-3"><%= discussion.posts.count %></td>
               <td>
                 <%= link_to "檢視", discussion, class: "btn btn-link no-underline" %>
               </td>

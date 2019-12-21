@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
 
   # GET /discussions
   def index
-    @pagy, @discussions = pagy(Discussion.all)
+    @pagy, @discussions = pagy(Discussion.all.sorted)
   end
 
   # GET /discussions/1
