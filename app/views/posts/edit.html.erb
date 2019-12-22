@@ -1,9 +1,10 @@
-<div class="w-full sm:w-2/3">
+<div class="flex flex-wrap">
+<div class="w-full sm:w-1/2">
   <%= render 'dashboard/tradingview' %>
 </div>
-<div class="w-full sm:w-1/3">
+<div class="w-full sm:w-1/2 p-2">
 	<div class="container mx-auto my-8 px-4 max-w-3xl bg-white shadow p-8">
-	  <h1 class="h2 mb-6">Edit Post</h1>
+	  <h1 class="h2 mb-6">編輯回文</h1>
 
 	  <%= form_with model: [@discussion, @post], class: "flex-1" do |form| %>
 
@@ -11,13 +12,14 @@
 		    <%= form.rich_text_area :body, data: { controller: "mentions", target: "mentions.field" } %>
 		  </div>
 		  <div class="form-group">
-		  	<%= link_to 'Delete', [@discussion, @post], class: "btn btn-link text-red-700", method: :delete, data: { remote: true, confirm: "Are you sure?" } %>
+		  	<%= link_to '刪除', [@discussion, @post], class: "btn btn-link text-red-700", method: :delete, data: { remote: true, confirm: "Are you sure?" } %>
 		  	<div >
-		  		<%= link_to "Cancel", @discussion, class: "btn btn-link" %>
+		  		<%= link_to "取消", @discussion, class: "btn btn-link" %>
 		  		<%= form.submit "儲存更新", class: "btn btn-tertiary", data: {disable_with: "更新中..." } %>
 		  	</div>
 		  </div>
 		<% end %>
 
 	</div>
+</div>
 </div>
